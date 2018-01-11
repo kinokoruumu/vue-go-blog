@@ -11,7 +11,7 @@ import (
 var db = NewDBConn()
 
 func NewDBConn() *gorm.DB {
-	db, err := gorm.Open(GetDBConfig("dbconfig.yml","development"))
+	db, err := gorm.Open(GetDBConfig("/Users/kinokoruumu/go/src/github.com/kinokoruumu/vue-go-blog/dbconfig.yml", "development"))
 	if err != nil {
 		panic(err)
 	}

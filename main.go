@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/kinokoruumu/vue-go-blog/controller"
 )
 
 func main() {
@@ -17,19 +18,10 @@ func main() {
 		c.HTML(200, "index.html", nil)
 	})
 
-	////wsハンドラ
-	//r.GET("/ws", func(c *gin.Context) {
-	//	websocket.GetHandle()(c.Writer, c.Request)
-	//})
-
 	api := r.Group("/api")
-	// crosの許可
-	api.GET("/makki", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"name":  "katsuramaki taiki",
-			"sex":   "man",
-			"email": "llxo2_5oxll@icloud.com",
-		})
-	})
+
+	api.GET("/articles", controller.GetArticleAll)
+	api.GET("/articles/:id", controller.GetArticle)
+
 	r.Run(":3000")
 }
